@@ -22,9 +22,10 @@ public class Hold : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //if Touch_E == true;
+
             if (!isHeld && CheckUp.InteracCondition)
             {
+                Touch_E = true;
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 rb.linearVelocity = Vector2.zero;
                 Physics2D.IgnoreCollision(boxCollider, playerCollider, true); // d�sactive la collision

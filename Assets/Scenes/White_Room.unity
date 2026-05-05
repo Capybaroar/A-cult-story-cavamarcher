@@ -657,10 +657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTE
   UiBibleManager: {fileID: 1974229137}
-  droite: 0
-  gauche: 0
-  haut: 0
-  bas: 0
 --- !u!114 &849530957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,6 +810,8 @@ MonoBehaviour:
   QTEkeys: 0
   QTElvl: {fileID: 1974229137}
   key: {fileID: 362332686}
+  Close_condition: 0
+  QTEactivation: {fileID: 0}
 --- !u!114 &849530959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,6 +830,8 @@ MonoBehaviour:
   - {fileID: 1920660271}
   - {fileID: 612666544}
   - {fileID: 560973141}
+  qteactivation: {fileID: 0}
+  QTEStart: {fileID: 1974229137}
 --- !u!1001 &1019035437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,6 +906,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1974229138}
     m_Modifications:
     - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: haut
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: CheckCondition
       value: 
       objectReference: {fileID: 849530956}
@@ -916,6 +920,10 @@ PrefabInstance:
     - target: {fileID: 6141303168124742160, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: m_Name
       value: qte_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6141303168124742160, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7002821569329140631, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: m_Pivot.x

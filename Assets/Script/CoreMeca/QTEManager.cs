@@ -6,7 +6,7 @@ public class QTEManager : MonoBehaviour
 {
     public GameObject QTEBox;
     public List<GameObject> QTElist;
-    public QTE IsDone;
+    public QTEactivation qteactivation;
     public GameObject QTEStart;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,17 +17,18 @@ public class QTEManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int var = 0
-        If (QTElist(var).IsDone.done == true)
+        int var = 0;
+        var qtea = QTElist[var].GetComponent<QTEactivation>();
+        if (qtea.done == true)
         {
-            QTElist(var).SetActive(false);
+            QTElist[var].SetActive(false);
         }
         var += 1;
-        if (QTElist(3).activeSelf(false))
+        if (!QTElist[3].activeSelf)
         {
-            var=0;
+            var = 0;
             QTEStart.SetActive(false);
-            foreach (go in QTElist)
+            foreach (GameObject go in QTElist)
             {
                 go.SetActive(true);
             }

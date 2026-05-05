@@ -5,6 +5,8 @@ public class SETActiveQTE : MonoBehaviour
     public bool QTEkeys=false;
     public GameObject QTElvl;
     public Hold key;
+    public bool Close_condition;
+    public QTEactivation QTEactivation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +18,10 @@ public class SETActiveQTE : MonoBehaviour
     {
         if(key.Touch_E == true)
         {
+            QTEkeys = true;
             Activation();
+            QTEactivation.Cor();
+
         }
     }
 
@@ -28,10 +33,10 @@ public class SETActiveQTE : MonoBehaviour
             Debug.Log("maismarche");
             QTElvl.SetActive(true);
         }
-       // if (Close_condition == true)
-        //{
-         //   QTElvl.SetActive(false);
+        if (Close_condition == true)
+        {
+            QTElvl.SetActive(false);
 
-       // }
+        }
     }
 }

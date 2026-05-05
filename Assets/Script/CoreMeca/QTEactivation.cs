@@ -8,7 +8,7 @@ public class QTEactivation : MonoBehaviour
 {
     public Sprite[] spritesTab;
     public SpriteRenderer MySpriteRenderer;
-    public SETActiveQTE CheckCondition;
+    public QTE CheckCondition;
     public float TimeQTEanimation;
     public bool QTEdonechoosing=false;
 
@@ -28,7 +28,7 @@ public class QTEactivation : MonoBehaviour
 
     public void Cor()
     {
-        if (CheckCondition.QTElvl.activeSelf == true)
+        if (CheckCondition.UiBibleManager.activeSelf == true)
         {
             CoroutineQTEanimation = StartCoroutine(Logtime());
             while (QTEdonechoosing != true)
@@ -36,6 +36,7 @@ public class QTEactivation : MonoBehaviour
                 QTEchoosingmanager();
             }
             StopCoroutine(CoroutineQTEanimation);
+            
         }
 
     }

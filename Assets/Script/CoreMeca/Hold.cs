@@ -27,13 +27,13 @@ public class Hold : MonoBehaviour
             {
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 rb.linearVelocity = Vector2.zero;
-                Physics2D.IgnoreCollision(boxCollider, playerCollider, true); // désactive la collision
+                Physics2D.IgnoreCollision(boxCollider, playerCollider, true); // dï¿½sactive la collision
                 isHeld = true;
             }
             else if (isHeld)
             {
                 rb.bodyType = RigidbodyType2D.Dynamic;
-                Physics2D.IgnoreCollision(boxCollider, playerCollider, false); // réactive la collision
+                Physics2D.IgnoreCollision(boxCollider, playerCollider, false); // rï¿½active la collision
                 isHeld = false;
             }
         }

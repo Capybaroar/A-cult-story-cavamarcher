@@ -286,6 +286,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1974229138}
     m_Modifications:
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: CheckCondition
+      value: 
+      objectReference: {fileID: 849530956}
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: TimeQTEanimation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6141303168124742160, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: m_Name
       value: qte_01 (2)
@@ -897,6 +905,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1974229138}
     m_Modifications:
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: CheckCondition
+      value: 
+      objectReference: {fileID: 849530956}
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: TimeQTEanimation
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6141303168124742160, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: m_Name
       value: qte_01
@@ -1492,6 +1508,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1974229138}
     m_Modifications:
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: CheckCondition
+      value: 
+      objectReference: {fileID: 849530956}
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: TimeQTEanimation
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6141303168124742160, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: m_Name
       value: qte_01 (3)
@@ -1601,6 +1625,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1974229138}
     m_Modifications:
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: CheckCondition
+      value: 
+      objectReference: {fileID: 849530956}
+    - target: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+      propertyPath: TimeQTEanimation
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6141303168124742160, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
       propertyPath: m_Name
       value: qte_01 (1)

@@ -12,6 +12,9 @@ public class QTE : MonoBehaviour
     public bool gauche = false;
     public bool haut = false;
     public bool bas = false;
+    public QTEactivation trueAnswer;
+    public bool done=false;
+    public bool defeat=false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -55,6 +58,67 @@ public class QTE : MonoBehaviour
         {
             bas = true;
             print("Bas");
+
+        }
+    }
+
+
+
+    public void QTEAnswer()
+    {
+        if(trueAnswer.spritesTab[0] == true)
+        {
+            if (bas == true)
+            {
+                done = true;
+
+            }
+            else 
+            {
+                defeat = true;
+            }
+
+        }
+
+        if(trueAnswer.spritesTab[1] == true)
+        {
+            if (haut == true)
+            {
+                done = true;
+
+            }
+            else 
+            {
+                defeat = true;
+            }
+
+        }
+
+        if(trueAnswer.spritesTab[2] == true)
+        {
+            if (gauche == true)
+            {
+                done = true;
+
+            }
+            else 
+            {
+                defeat = true;
+            }
+
+        }
+
+        if(trueAnswer.spritesTab[3] == true)
+        {
+            if (droite == true)
+            {
+                done = true;
+
+            }
+            else 
+            {
+                defeat = true;
+            }
 
         }
     }

@@ -35,16 +35,25 @@ public class QTEactivation : MonoBehaviour
 
     public void Cor()
     {
-       
+        if (CoroutineQTEanimation != null) return;
+
+        print("corui");
+        // start the timeout coroutine
         CoroutineQTEanimation = StartCoroutine(Logtime());
-        while (QTEdonechoosing != true)
+        // start the non-blocking choosing loop
+        StartCoroutine(QTEChoosingLoop());
+    }
+
+    private IEnumerator QTEChoosingLoop()
+    {
+        while (!QTEdonechoosing)
         {
             QTEchoosingmanager();
+            // allow one frame to pass so coroutine, input, and rendering continue
+            yield return null;
         }
-        StopCoroutine(CoroutineQTEanimation);
-            
-       
 
+        StopCoroutine(CoroutineQTEanimation);
     }
 
     public IEnumerator Logtime()

@@ -10,13 +10,14 @@ public class QTEactivation : MonoBehaviour
     public Sprite[] spritesTab;
     public SpriteRenderer MySpriteRenderer;
     public float TimeQTEanimation;
-    public bool QTEdonechoosing=false;
+    public bool QTEdonechoosing = false;
     public bool droite = false;
     public bool gauche = false;
     public bool haut = false;
     public bool bas = false;
     public bool done = false;
     public bool defeat = false;
+    public bool NotMyTurn=true;
 
 
     private Coroutine CoroutineQTEanimation;
@@ -69,32 +70,34 @@ public class QTEactivation : MonoBehaviour
     }
 
 
-    public void OnQTE(InputValue iv)
+    public void QTEInput()
     {
-        var val = iv.Get<Vector2>();
-
-        if (val.x > 0 && val.y == 0)
+        if (NotMyTurn == false)
         {
-            droite = true;
-            print("Droite");
-        }
-        if (val.y > 0 && val.x == 0)
-        {
-            haut = true;
-            print("Haut");
 
-        }
-        if (val.x < 0 && val.y == 0)
-        {
-            gauche = true;
-            print("Gauche");
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                droite = true;
+                print("Droite");
+            }
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                haut = true;
+                print("Haut");
 
-        }
-        if (val.y < 0 && val.x == 0)
-        {
-            bas = true;
-            print("Bas");
+            }
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                gauche = true;
+                print("Gauche");
 
+            }
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                bas = true;
+                print("Bas");
+
+            }
         }
     }
 
@@ -107,11 +110,13 @@ public class QTEactivation : MonoBehaviour
             if (bas == true)
             {
                 done = true;
+                print("Answer correct");
 
             }
             else
             {
                 defeat = true;
+                print("Answer false");
             }
 
         }
@@ -121,11 +126,13 @@ public class QTEactivation : MonoBehaviour
             if (haut == true)
             {
                 done = true;
+                print("Answer correct");
 
             }
             else
             {
                 defeat = true;
+                print("Answer false");
             }
 
         }
@@ -135,11 +142,13 @@ public class QTEactivation : MonoBehaviour
             if (gauche == true)
             {
                 done = true;
+                print("Answer correct");
 
             }
             else
             {
                 defeat = true;
+                print("Answer false");
             }
 
         }
@@ -149,11 +158,13 @@ public class QTEactivation : MonoBehaviour
             if (droite == true)
             {
                 done = true;
+                print("Answer correct");
 
             }
             else
             {
                 defeat = true;
+                print("Answer false");
             }
 
         }

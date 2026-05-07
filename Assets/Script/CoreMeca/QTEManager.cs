@@ -11,7 +11,6 @@ public class QTEManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        print("hihi");
     }
 
     // Update is called once per frame
@@ -19,11 +18,14 @@ public class QTEManager : MonoBehaviour
     {
         int var = 0;
         var qtea = QTElist[var].GetComponent<QTEactivation>();
+        qtea.NotMyTurn = false;
         if (qtea.done == true)
         {
             QTElist[var].SetActive(false);
+            var += 1;
+
         }
-        var += 1;
+
         if (!QTElist[3].activeSelf)
         {
             var = 0;

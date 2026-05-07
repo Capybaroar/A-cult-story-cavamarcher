@@ -7,7 +7,7 @@ public class SETActiveQTE : MonoBehaviour
     public GameObject QTElvl;
     public Hold key;
     public bool Close_condition;
-    public List<QTEactivation> QTEGameobject;
+    public List<QTEDisplay> QTEGameobject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,9 +28,8 @@ public class SETActiveQTE : MonoBehaviour
             QTEkeys = true;
             Activation();
             Debug.Log("qteactive");
-            foreach (QTEactivation sc in QTEGameobject)
+            foreach (QTEDisplay sc in QTEGameobject)
             {
-                sc.Cor();
             }
             Debug.Log("qteactiveOUI");
         }

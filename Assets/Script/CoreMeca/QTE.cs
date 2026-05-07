@@ -1,28 +1,9 @@
-using NUnit.Framework;
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
-using Unity.VisualScripting.Dependencies.NCalc;
 
 
-public class QTE : MonoBehaviour
+[CreateAssetMenu(fileName = "New QTE", menuName = "QTE")]
+public class QTE : ScriptableObject
 {
-    public GameObject UiBibleManager;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()  
-    {
-    }
-
-    //private void OnStart_QTE()
-    //{
-    //    UiBibleManager.SetActive(!UiBibleManager.activeInHierarchy);
-    //}
+  public Sprite QTESprite;
+  public Vector2 value;
 }

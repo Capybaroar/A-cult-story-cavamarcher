@@ -1,41 +1,99 @@
-using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.InputSystem.Controls;
 
 public class QTEManager : MonoBehaviour
 {
-    public GameObject QTEBox;
-    public List<GameObject> QTElist;
-    public QTEactivation qteactivation;
-    public GameObject QTEStart;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    [SerializeField]
+    private QTEDisplay[] qteDisplay;
+    [SerializeField]
+    private QTE[] possibleQTEs; 
+    private List<QTE> selectedQTEs;
+
+    //scotch
+    private int currentQTE = -1;    
+
     void Start()
     {
+        qteDisplay = GetComponentsInChildren<QTEDisplay>();
+        selectedQTEs = new List<QTE>();
+        
     }
 
-    // Update is called once per frame
+    private void GenerateQTE()
+    {
+        for (int i = 0; i < qteDisplay.Length; i++)
+        {
+            int randomIndex = Random.Range(0, possibleQTEs.Length);
+            selectedQTEs.Add(possibleQTEs[randomIndex]);
+            
+            qteDisplay[i].Reset();
+            qteDisplay[i].DisplayQTE(selectedQTEs[i]);
+        }
+
+    }
+
+
+    //A changer
     void Update()
     {
-        int var = 0;
-        var qtea = QTElist[var].GetComponent<QTEactivation>();
-        qtea.NotMyTurn = false;
-        if (qtea.done == true)
+        if(Input.GetKeyDown(KeyCode.P))
         {
-            QTElist[var].SetActive(false);
-            var += 1;
-
-        }
-
-        if (!QTElist[3].activeSelf)
-        {
-            var = 0;
-            QTEStart.SetActive(false);
-            foreach (GameObject go in QTElist)
-            {
-                go.SetActive(true);
-            }
-
-
+            LaunchQTE();            
         }
     }
+
+    private void LaunchQTE()
+    {
+        StartCoroutine(Anim());
+        //Afficher les display QTE 
+        //Lancer une animation
+    }
+
+    private IEnumerator Anim()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            foreach(var qted in qteDisplay)
+            {
+                var disp = possibleQTEs[Random.Range(0, possibleQTEs.Length)];
+                qted.DisplayQTE(disp);
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+        GenerateQTE();
+        currentQTE = 0;
+    }
+
+
+    public void OnQTE(InputValue v)
+    {
+        print("hiiiii");
+        if(currentQTE<0)
+        {
+            return;
+        }
+
+        var currentSelected = selectedQTEs[currentQTE];
+        var  dir = v.Get<Vector2>().normalized;
+        if(dir == currentSelected.value)
+        {
+            qteDisplay[currentQTE].ValidationFeedback();
+            currentQTE++;
+        }
+        else
+        {
+            //currentQTE =-1;
+            //echec
+        }
+        if(currentQTE >= selectedQTEs.Count)
+        {
+            currentQTE =-1;
+            //victoire sequence
+        }
+    }
+
 }

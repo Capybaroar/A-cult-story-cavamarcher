@@ -107,9 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b917e0e0e378b4c8af90d80c2a904a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTEactivation
-  spritesTab:
-  - {fileID: 2912147235762990277, guid: b369071e942cb414ab852228cd883474, type: 3}
-  - {fileID: 5655321678828108626, guid: ba61bdd4f3af76d4dbc748bd008308cf, type: 3}
-  - {fileID: 5895540913150188443, guid: 6b67096e7ed9da34882cb4d9c96eb770, type: 3}
-  - {fileID: 4699842155992170130, guid: ca8fadf564a82a343b1c3c9ccd2d27d1, type: 3}
-  MySpriteRenderer: {fileID: 7396655294438808291}
+  spriteRenderer: {fileID: 7396655294438808291}

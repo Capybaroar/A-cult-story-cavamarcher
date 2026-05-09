@@ -1095,6 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994dd97ff979fdc4d918d58140a56652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTEManager
+  QTElvl1: {fileID: 1974229137}
   qteDisplay: []
   possibleQTEs:
   - {fileID: 11400000, guid: 29ccbe72cc30afd42b332eccf331d0cb, type: 2}
@@ -1737,7 +1738,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d524c8ba21054fbe04d861fc3830b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
-  MenuObject: {fileID: 1009307979}
 --- !u!1 &1778607605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d524c8ba21054fbe04d861fc3830b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
-  MenuObject: {fileID: 1009307979}
 --- !u!114 &1929310982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2321,7 +2320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1974229138
 Transform:
   m_ObjectHideFlags: 0

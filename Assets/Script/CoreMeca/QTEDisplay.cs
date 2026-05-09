@@ -13,6 +13,11 @@ public class QTEDisplay : MonoBehaviour
         spriteRenderer.color = Color.green;
     }
 
+    public void FailFeedback()
+    {
+        spriteRenderer.color = Color.red;
+    }
+
     public void Reset()
     {
         spriteRenderer.color = Color.white;

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.Controls;
 
 public class QTEManager : MonoBehaviour
 {
-    
+    public GameObject QTElvl1;
     [SerializeField]
     private QTEDisplay[] qteDisplay;
     [SerializeField]
@@ -48,6 +48,8 @@ public class QTEManager : MonoBehaviour
 
     private void LaunchQTE()
     {
+        QTElvl1.SetActive(true);
+
         StartCoroutine(Anim());
         //Afficher les display QTE 
         //Lancer une animation
@@ -86,6 +88,7 @@ public class QTEManager : MonoBehaviour
         }
         else
         {
+            qteDisplay[currentQTE].FailFeedback();
             //currentQTE =-1;
             //echec
         }

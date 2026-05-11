@@ -8,6 +8,7 @@ public class SETActiveQTE : MonoBehaviour
     public Hold key;
     public bool Close_condition;
     public List<QTEDisplay> QTEGameobject;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

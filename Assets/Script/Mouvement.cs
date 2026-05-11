@@ -8,6 +8,8 @@ public class Mouvement : MonoBehaviour
     public float speed;
     public Raycast Jump;
     public float JumpForce;
+    public QTEManager QTEManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,6 +18,16 @@ public class Mouvement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        if (QTEManager.QTEIng != true)
+        {
+            MCmouvemet();
+        }
+    }
+
+
+
+    public void MCmouvemet()
     {
         if (Input.GetKey(KeyCode.A))
         {
@@ -30,11 +42,8 @@ public class Mouvement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Jump.JumpCondition)
         {
-            print("tupeuxsauterguignol");
-            
             rb.AddForce(new Vector2(0, JumpForce) * 5);
 
         }
-        
     }
 }

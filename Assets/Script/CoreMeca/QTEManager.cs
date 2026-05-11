@@ -12,13 +12,14 @@ public class QTEManager : MonoBehaviour
     [SerializeField]
     private QTE[] possibleQTEs; 
     private List<QTE> selectedQTEs;
+    public bool QTEIng=false;
 
     //scotch
     private int currentQTE = -1;    
 
     void Start()
     {
-        qteDisplay = GetComponentsInChildren<QTEDisplay>();
+        //qteDisplay = GetComponentsInChildren<QTEDisplay>();
         selectedQTEs = new List<QTE>();
         
     }
@@ -42,7 +43,9 @@ public class QTEManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            LaunchQTE();            
+            Time.timeScale = 0f;
+            LaunchQTE();
+            QTEIng =true;
         }
     }
 
@@ -59,12 +62,14 @@ public class QTEManager : MonoBehaviour
     {
         for (int i = 0; i < 15; i++)
         {
+            Debug.Log(i.ToString());
             foreach(var qted in qteDisplay)
             {
+                Debug.Log("JESUISLAAAAAAAAAA");
                 var disp = possibleQTEs[Random.Range(0, possibleQTEs.Length)];
                 qted.DisplayQTE(disp);
             }
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSecondsRealtime(.1f);
         }
         GenerateQTE();
         currentQTE = 0;

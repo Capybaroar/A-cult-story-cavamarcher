@@ -739,6 +739,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7002821569329140631, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
   m_PrefabInstance: {fileID: 1145654043}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &695868153 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+  m_PrefabInstance: {fileID: 1145654043}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b917e0e0e378b4c8af90d80c2a904a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QTEactivation
 --- !u!1 &704906838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,12 +1107,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTEManager
   QTElvl1: {fileID: 1974229137}
-  qteDisplay: []
+  qteDisplay:
+  - {fileID: 695868153}
+  - {fileID: 1920660275}
+  - {fileID: 1621881969}
+  - {fileID: 1040468538}
   possibleQTEs:
   - {fileID: 11400000, guid: 29ccbe72cc30afd42b332eccf331d0cb, type: 2}
   - {fileID: 11400000, guid: 484f21e671ea0b34a9775ad03c218229, type: 2}
   - {fileID: 11400000, guid: 3f3e534789a09ed4fa5dc8007859501f, type: 2}
   - {fileID: 11400000, guid: b9f1965c01e604f439b90af7feb63b0a, type: 2}
+  QTEIng: 0
 --- !u!1 &1009307979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1181,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1929310981}
+      - m_Target: {fileID: 1661897740}
         m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -1300,6 +1316,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe4f4d57f3d9944d976fd7d91bb775c, type: 3}
+--- !u!114 &1040468538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+  m_PrefabInstance: {fileID: 2109547520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b917e0e0e378b4c8af90d80c2a904a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QTEactivation
 --- !u!1001 &1145654043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1694,6 +1721,17 @@ MonoBehaviour:
   E_Key: 0
   E_Touch: {fileID: -223061786151240412, guid: 07ef85be556890345852a86d0ba5626d, type: 3}
   MySprite: {fileID: 1353445360}
+--- !u!114 &1621881969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+  m_PrefabInstance: {fileID: 558669836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b917e0e0e378b4c8af90d80c2a904a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QTEactivation
 --- !u!1 &1661897738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623d524c8ba21054fbe04d861fc3830b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPause
+  MenuObject: {fileID: 1929310980}
 --- !u!1 &1778607605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2069,7 @@ MonoBehaviour:
   speed: 0.1
   Jump: {fileID: 790602648}
   JumpForce: 200
+  QTEManager: {fileID: 849530959}
 --- !u!50 &1891497013
 Rigidbody2D:
   serializedVersion: 5
@@ -2117,6 +2157,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7002821569329140631, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
   m_PrefabInstance: {fileID: 2146552853}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1920660275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8204543157710232629, guid: 6d10b99dd1b090243b21f1e70ef4c14f, type: 3}
+  m_PrefabInstance: {fileID: 2146552853}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b917e0e0e378b4c8af90d80c2a904a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QTEactivation
 --- !u!1 &1929310980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2180,6 @@ GameObject:
   - component: {fileID: 1929310984}
   - component: {fileID: 1929310983}
   - component: {fileID: 1929310982}
-  - component: {fileID: 1929310981}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2137,18 +2187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1929310981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929310980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623d524c8ba21054fbe04d861fc3830b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuPause
 --- !u!114 &1929310982
 MonoBehaviour:
   m_ObjectHideFlags: 0

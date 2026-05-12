@@ -10,18 +10,30 @@ public class QTEManager : MonoBehaviour
     [SerializeField]
     private QTEDisplay[] qteDisplay;
     [SerializeField]
-    private QTE[] possibleQTEs; 
+    private QTE[] possibleQTEs;
     private List<QTE> selectedQTEs;
-    public bool QTEIng=false;
+    public bool QTEIng = false;
+
+
+
+    public bool QTEFORCE = false;
+    public bool QTEFORCECondition = false;
+
+    public bool QTEPSY = false;
+    public bool QTEPSYCondition = false;
+
+    public bool QTEFIRE = false;
+    public bool QTEFIRECondition = false;
+
 
     //scotch
-    private int currentQTE = -1;    
+    private int currentQTE = -1;
 
     void Start()
     {
         //qteDisplay = GetComponentsInChildren<QTEDisplay>();
         selectedQTEs = new List<QTE>();
-        
+
     }
 
     private void GenerateQTE()
@@ -30,7 +42,7 @@ public class QTEManager : MonoBehaviour
         {
             int randomIndex = Random.Range(0, possibleQTEs.Length);
             selectedQTEs.Add(possibleQTEs[randomIndex]);
-            
+
             qteDisplay[i].Reset();
             qteDisplay[i].DisplayQTE(selectedQTEs[i]);
         }
@@ -41,19 +53,34 @@ public class QTEManager : MonoBehaviour
     //A changer
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Time.timeScale = 0f;
             LaunchQTE();
-            QTEIng =true;
+            QTEFORCECondition = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            LaunchQTE();
+            QTEFIRECondition = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            LaunchQTE();
+            QTEPSYCondition = true;
         }
     }
 
     private void LaunchQTE()
     {
+        Time.timeScale = 0f;
+
         QTElvl1.SetActive(true);
 
         StartCoroutine(Anim());
+        QTEIng = true;
+
         //Afficher les display QTE 
         //Lancer une animation
     }
@@ -63,7 +90,7 @@ public class QTEManager : MonoBehaviour
         for (int i = 0; i < 15; i++)
         {
             Debug.Log(i.ToString());
-            foreach(var qted in qteDisplay)
+            foreach (var qted in qteDisplay)
             {
                 Debug.Log("JESUISLAAAAAAAAAA");
                 var disp = possibleQTEs[Random.Range(0, possibleQTEs.Length)];
@@ -79,14 +106,14 @@ public class QTEManager : MonoBehaviour
     public void OnQTE(InputValue v)
     {
         print("hiiiii");
-        if(currentQTE<0)
+        if (currentQTE < 0)
         {
             return;
         }
 
         var currentSelected = selectedQTEs[currentQTE];
-        var  dir = v.Get<Vector2>().normalized;
-        if(dir == currentSelected.value)
+        var dir = v.Get<Vector2>().normalized;
+        if (dir == currentSelected.value)
         {
             qteDisplay[currentQTE].ValidationFeedback();
             currentQTE++;
@@ -97,9 +124,26 @@ public class QTEManager : MonoBehaviour
             //currentQTE =-1;
             //echec
         }
-        if(currentQTE >= selectedQTEs.Count)
+        if (currentQTE >= selectedQTEs.Count)
         {
-            currentQTE =-1;
+            currentQTE = -1;
+            QTElvl1.SetActive(false);
+            Time.timeScale = 1f;
+            QTEIng = false;
+            if (QTEFORCECondition)
+            {
+                QTEFORCE = true;
+            }
+
+            if (QTEFIRECondition)
+            {
+                QTEFIRE = true;
+            }
+
+            if (QTEPSYCondition)
+            {
+                QTEPSY = true;
+            }
             //victoire sequence
         }
     }

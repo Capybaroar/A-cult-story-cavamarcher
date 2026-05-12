@@ -4,29 +4,16 @@ public class MenuPause : MonoBehaviour
 {
     public GameObject MenuObject;
     private bool isActive = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
-        {
-            MenuObject.SetActive(true);
-            //Cursor.visible = true; // Show the cursor
-            //Cursor.lockState = CursorLockMode.Confined; // Unlock the cursor
-            Time.timeScale = 0f; // Pause the game
-        }
-        else
-        {
-            MenuObject.SetActive(false);
-            //Cursor.visible = false; // Hide the cursor  
-            //Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
-            Time.timeScale = 1f; // Resume the game
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -37,5 +24,15 @@ public class MenuPause : MonoBehaviour
     public void ResumeGame()
     {
         isActive = !isActive; // Toggle the menu state
+        MenuObject.SetActive(isActive);
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0f;
+
+        }
     }
 }

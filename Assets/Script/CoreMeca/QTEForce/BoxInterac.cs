@@ -6,6 +6,7 @@ public class BoxInterac : MonoBehaviour
     public LayerMask layerMask;
     Rigidbody2D rb2D;
     public TouchManager CheckCondition;
+    public QTEManager QTEManager;
 
     void Start()
     {
@@ -17,21 +18,26 @@ public class BoxInterac : MonoBehaviour
         var distanceactRight = Physics2D.Raycast(transform.position, Vector2.right, 1f, layerMask);
         var distanceactLeft = Physics2D.Raycast(transform.position, -Vector2.right, 1f, layerMask);
 
-        if (distanceactRight || distanceactLeft)
+        if (QTEManager.QTEFORCE == true)
         {
-            InteracCondition = true;
-            CheckCondition.TouchAppear = true;
-            print("YIPIiiiiiiiii");
-            CheckCondition.E_Key = true;
+            if (distanceactRight || distanceactLeft)
+            {
+                InteracCondition = true;
+                CheckCondition.TouchAppear = true;
+                print("YIPIiiiiiiiii");
+                CheckCondition.E_Key = true;
 
 
+            }
+            else
+            {
+                InteracCondition = false;
+                CheckCondition.TouchAppear = false;
+                CheckCondition.E_Key = false;
+            }
         }
-        else
-        {
-            InteracCondition = false;
-            CheckCondition.TouchAppear = false;
-            CheckCondition.E_Key = false;
-        }
+
+
     }
 
     private void OnDrawGizmos()

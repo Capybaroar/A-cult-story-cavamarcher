@@ -1118,6 +1118,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f3e534789a09ed4fa5dc8007859501f, type: 2}
   - {fileID: 11400000, guid: b9f1965c01e604f439b90af7feb63b0a, type: 2}
   QTEIng: 0
+  QTEFORCE: 0
+  QTEFORCECondition: 0
+  QTEPSY: 0
+  QTEPSYCondition: 0
+  QTEFIRE: 0
+  QTEFIRECondition: 0
+  PowerUsing: 0
 --- !u!1 &1009307979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2290,6 +2297,10 @@ PrefabInstance:
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1891497011}
+    - target: {fileID: 3549373714490015763, guid: b7b2d87e29590d4498dd2048964c3184, type: 3}
+      propertyPath: QTEManager
+      value: 
+      objectReference: {fileID: 849530959}
     - target: {fileID: 3549373714490015763, guid: b7b2d87e29590d4498dd2048964c3184, type: 3}
       propertyPath: CheckCondition
       value: 

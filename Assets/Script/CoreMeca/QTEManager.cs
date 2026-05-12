@@ -25,6 +25,8 @@ public class QTEManager : MonoBehaviour
     public bool QTEFIRE = false;
     public bool QTEFIRECondition = false;
 
+    public bool PowerUsing = false;
+
 
     //scotch
     private int currentQTE = -1;
@@ -53,22 +55,30 @@ public class QTEManager : MonoBehaviour
     //A changer
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            LaunchQTE();
-            QTEFORCECondition = true;
-        }
+        TouchManager();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+    private void TouchManager()
+    {
+        if (PowerUsing != true)
         {
-            LaunchQTE();
-            QTEFIRECondition = true;
-        }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                LaunchQTE();
+                QTEFORCECondition = true;
+            }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            LaunchQTE();
-            QTEPSYCondition = true;
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                LaunchQTE();
+                QTEFIRECondition = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                LaunchQTE();
+                QTEPSYCondition = true;
+            }
         }
     }
 
@@ -98,8 +108,16 @@ public class QTEManager : MonoBehaviour
             }
             yield return new WaitForSecondsRealtime(.1f);
         }
+        selectedQTEs.Clear();
+
         GenerateQTE();
         currentQTE = 0;
+    }
+
+    private IEnumerator FailQTETime()
+    {
+        yield return new WaitForSeconds(1f);
+        StopCoroutine(FailQTETime());
     }
 
 
@@ -120,7 +138,11 @@ public class QTEManager : MonoBehaviour
         }
         else
         {
+            StartCoroutine(FailQTETime());
+
             qteDisplay[currentQTE].FailFeedback();
+            QTElvl1.SetActive(false);
+
             //currentQTE =-1;
             //echec
         }
@@ -133,16 +155,27 @@ public class QTEManager : MonoBehaviour
             if (QTEFORCECondition)
             {
                 QTEFORCE = true;
+                QTEFORCECondition = false;
+
+                PowerUsing = true;
             }
 
             if (QTEFIRECondition)
             {
                 QTEFIRE = true;
+                QTEFIRECondition = false;
+
+                PowerUsing = true;
+
             }
 
             if (QTEPSYCondition)
             {
                 QTEPSY = true;
+                QTEPSYCondition = false;
+
+                PowerUsing = true;
+
             }
             //victoire sequence
         }

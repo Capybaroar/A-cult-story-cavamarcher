@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 608942799}
   - component: {fileID: 608942798}
   m_Layer: 5
-  m_Name: ww
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,17 +545,17 @@ RectTransform:
   m_GameObject: {fileID: 608942796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15.432265, y: 8.1231, z: 8.1231}
+  m_LocalScale: {x: 9.703808, y: 5.1078053, z: 5.1078053}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1009307983}
   m_Father: {fileID: 1929310985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -27, y: 2}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &608942798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,7 +897,7 @@ GameObject:
   - component: {fileID: 790602649}
   - component: {fileID: 790602648}
   m_Layer: 3
-  m_Name: GameObject
+  m_Name: JumpZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,6 +1118,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f3e534789a09ed4fa5dc8007859501f, type: 2}
   - {fileID: 11400000, guid: b9f1965c01e604f439b90af7feb63b0a, type: 2}
   QTEIng: 0
+  PVManager: {fileID: 1891497015}
   QTEFORCE: 0
   QTEFORCECondition: 0
   QTEPSY: 0
@@ -1138,7 +1139,7 @@ GameObject:
   - component: {fileID: 1009307981}
   - component: {fileID: 1009307980}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ResumeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,11 +1254,11 @@ RectTransform:
   - {fileID: 704906839}
   m_Father: {fileID: 608942797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.4, y: -18.134521}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.2, y: 16.865479}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1019035437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2188,7 +2189,7 @@ GameObject:
   - component: {fileID: 1929310983}
   - component: {fileID: 1929310982}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas_Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

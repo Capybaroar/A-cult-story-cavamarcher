@@ -13,6 +13,7 @@ public class QTEManager : MonoBehaviour
     private QTE[] possibleQTEs;
     private List<QTE> selectedQTEs;
     public bool QTEIng = false;
+    public PVManager PVManager;
 
 
 
@@ -142,6 +143,7 @@ public class QTEManager : MonoBehaviour
 
             qteDisplay[currentQTE].FailFeedback();
             QTElvl1.SetActive(false);
+            PVManager.heart -= 1;
 
             //currentQTE =-1;
             //echec

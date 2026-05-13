@@ -1,9 +1,8 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine.InputSystem.Controls;
-
 public class QTEManager : MonoBehaviour
 {
     public GameObject QTElvl1;
@@ -15,6 +14,8 @@ public class QTEManager : MonoBehaviour
     public bool QTEIng = false;
     public PVManager PVManager;
 
+
+    public Timer timer;
 
 
     public bool QTEFORCE = false;
@@ -43,7 +44,8 @@ public class QTEManager : MonoBehaviour
     {
         for (int i = 0; i < qteDisplay.Length; i++)
         {
-            int randomIndex = Random.Range(0, possibleQTEs.Length);
+            int randomIndex = UnityEngine.Random.Range(0, possibleQTEs.Length);
+
             selectedQTEs.Add(possibleQTEs[randomIndex]);
 
             qteDisplay[i].Reset();
@@ -67,6 +69,7 @@ public class QTEManager : MonoBehaviour
             {
                 LaunchQTE();
                 QTEFORCECondition = true;
+
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -104,7 +107,7 @@ public class QTEManager : MonoBehaviour
             foreach (var qted in qteDisplay)
             {
                 Debug.Log("JESUISLAAAAAAAAAA");
-                var disp = possibleQTEs[Random.Range(0, possibleQTEs.Length)];
+                var disp = possibleQTEs[UnityEngine.Random.Range(0, possibleQTEs.Length)];
                 qted.DisplayQTE(disp);
             }
             yield return new WaitForSecondsRealtime(.1f);
@@ -144,6 +147,12 @@ public class QTEManager : MonoBehaviour
             qteDisplay[currentQTE].FailFeedback();
             QTElvl1.SetActive(false);
             PVManager.heart -= 1;
+            QTEFORCECondition = false;
+            QTEFIRECondition = false;
+            QTEPSYCondition = false;
+
+
+
 
             //currentQTE =-1;
             //echec
@@ -160,6 +169,10 @@ public class QTEManager : MonoBehaviour
                 QTEFORCECondition = false;
 
                 PowerUsing = true;
+
+                timer.TimerSlider.maxValue = timer.GameTime;
+                timer.TimerSlider.value = timer.GameTime;
+                timer.Stoptimer = false;
             }
 
             if (QTEFIRECondition)

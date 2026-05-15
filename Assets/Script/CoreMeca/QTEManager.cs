@@ -17,6 +17,11 @@ public class QTEManager : MonoBehaviour
     public PVManager pvmanager;
     public Timer timer;
 
+    public GameObject forceflouqte;
+    public GameObject fireflouqte;
+    public GameObject psyflouqte;
+
+
     public bool QTEFORCE = false;
     public bool QTEFORCECondition = false;
 
@@ -32,6 +37,7 @@ public class QTEManager : MonoBehaviour
 
     // Référence à la coroutine d'échec pour pouvoir l'arrêter proprement (Bug #3)
     private Coroutine _failCoroutine;
+    public bool failqte=false;
 
     void Start()
     {
@@ -62,6 +68,7 @@ public class QTEManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                forceflouqte.SetActive(true);
                 timer.ResetTimerQTETimerBar();
                 LaunchQTE();
                 QTEFORCECondition = true;
@@ -69,6 +76,8 @@ public class QTEManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
+                fireflouqte.SetActive(true);
+
                 timer.ResetTimerQTETimerBar();
 
                 LaunchQTE();
@@ -77,6 +86,8 @@ public class QTEManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                psyflouqte.SetActive(true);
+
                 timer.ResetTimerQTETimerBar();
 
                 LaunchQTE();
@@ -140,26 +151,7 @@ public class QTEManager : MonoBehaviour
         }
         else
         {
-            // Bug #3 — on arrête proprement l'ancienne coroutine avant d'en lancer une nouvelle
-            if (_failCoroutine != null) StopCoroutine(_failCoroutine);
-            _failCoroutine = StartCoroutine(FailQTETime());
-
-            qteDisplay[currentQTE].FailFeedback();
-            QTElvl1.SetActive(false);
-            pvmanager.loosingheartcondition = true;
-            QTEFORCECondition = false;
-            QTEFIRECondition = false;
-            QTEPSYCondition = false;
-
-            // Bug #4 — on remet le temps en marche après un échec
-            Time.timeScale = 1f;
-            QTEIng = false;
-
-            // Bug #5 — on réinitialise currentQTE pour éviter un accès invalide
-            currentQTE = -1;
-
-
-            return;
+            Failqte();
         }
 
         if (currentQTE >= selectedQTEs.Count)
@@ -177,6 +169,8 @@ public class QTEManager : MonoBehaviour
                 PowerUsing = true;
 
                 timer.ResetTimerPowerTimerBar();
+                forceflouqte.SetActive(false);
+
             }
 
             if (QTEFIRECondition)
@@ -187,6 +181,9 @@ public class QTEManager : MonoBehaviour
                 PowerUsing = true;
 
                 timer.ResetTimerPowerTimerBar();
+                fireflouqte.SetActive(false);
+
+
 
             }
 
@@ -198,8 +195,34 @@ public class QTEManager : MonoBehaviour
                 PowerUsing = true;
 
                 timer.ResetTimerPowerTimerBar();
+                psyflouqte.SetActive(false);
 
             }
         }
+    }
+
+
+    public void Failqte()
+    {
+        // Bug #3 — on arrête proprement l'ancienne coroutine avant d'en lancer une nouvelle
+        if (_failCoroutine != null) StopCoroutine(_failCoroutine);
+        _failCoroutine = StartCoroutine(FailQTETime());
+
+        qteDisplay[currentQTE].FailFeedback();
+        QTElvl1.SetActive(false);
+        pvmanager.loosingheartcondition = true;
+        QTEFORCECondition = false;
+        QTEFIRECondition = false;
+        QTEPSYCondition = false;
+
+        // Bug #4 — on remet le temps en marche après un échec
+        Time.timeScale = 1f;
+        QTEIng = false;
+
+        // Bug #5 — on réinitialise currentQTE pour éviter un accès invalide
+        currentQTE = -1;
+
+
+        return;
     }
 }

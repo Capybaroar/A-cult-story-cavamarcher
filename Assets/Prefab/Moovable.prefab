@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3549373714490015763}
   - component: {fileID: -14561587508301361}
   - component: {fileID: -6271544587981950553}
+  - component: {fileID: 3234099324403830923}
   m_Layer: 6
   m_Name: Moovable
   m_TagString: Untagged
@@ -156,6 +157,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+  rb2D: {fileID: 0}
+  CheckCondition: {fileID: 0}
+  qtemanager: {fileID: 0}
 --- !u!114 &-14561587508301361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +175,8 @@ MonoBehaviour:
   CheckUp: {fileID: 0}
   playerTransform: {fileID: 0}
   holdOffset: {x: 0, y: 1.5, z: 0}
+  playerCollider: {fileID: 0}
+  Touch_E: 0
 --- !u!50 &-6271544587981950553
 Rigidbody2D:
   serializedVersion: 5
@@ -198,3 +204,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3234099324403830923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129012889016824458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae74d4f9d5c77e84aacb103f5a12b70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldBox
+  mybox: {fileID: 0}
+  player: {fileID: 0}
+  holdcodition: 0

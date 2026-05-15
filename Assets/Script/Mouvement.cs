@@ -6,9 +6,9 @@ public class Mouvement : MonoBehaviour
     public Transform myTransform;
     public Rigidbody2D rb;
     public float speed;
-    public Raycast Jump;
     public float JumpForce;
     public QTEManager QTEManager;
+    public JumpCondition jump;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,24 +25,24 @@ public class Mouvement : MonoBehaviour
         }
     }
 
-
+    
 
     public void MCmouvemet()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            myTransform.position = myTransform.position - new Vector3(speed, 0, 0);
+            rb.linearVelocity = new Vector3(-speed, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            myTransform.position = myTransform.position + new Vector3(speed, 0, 0);
+            rb.linearVelocity = new Vector3(speed, 0, 0);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && Jump.JumpCondition)
+        if (Input.GetKeyDown(KeyCode.Space) && jump.jumpcondition == true)
         {
-            rb.AddForce(new Vector2(0, JumpForce) * 5);
+            rb.AddForce(new Vector3(0, JumpForce, 0));
 
         }
     }

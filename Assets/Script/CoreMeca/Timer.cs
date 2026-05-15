@@ -82,6 +82,7 @@ public class Timer : MonoBehaviour
         {
             QTEGameTime = 0;
             StopQTETimer = true;
+            qtemanager.Failqte();
         }
         qteTimerBar.value = QTEGameTime;
     }

@@ -16,6 +16,7 @@ public class Hold : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<Collider2D>();
+        CheckUp = GetComponent<BoxInterac>();
     }
 
     void Update()

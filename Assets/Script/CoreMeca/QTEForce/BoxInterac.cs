@@ -4,13 +4,15 @@ public class BoxInterac : MonoBehaviour
 {
     public bool InteracCondition;
     public LayerMask layerMask;
-    Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
     public TouchManager CheckCondition;
-    public QTEManager QTEManager;
+    public QTEManager qtemanager;
 
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        qtemanager = FindFirstObjectByType<QTEManager>();
+        CheckCondition = FindFirstObjectByType<TouchManager>();
     }
 
     void FixedUpdate()
@@ -18,7 +20,7 @@ public class BoxInterac : MonoBehaviour
         var distanceactRight = Physics2D.Raycast(transform.position, Vector2.right, 1f, layerMask);
         var distanceactLeft = Physics2D.Raycast(transform.position, -Vector2.right, 1f, layerMask);
 
-        if (QTEManager.QTEFORCE == true)
+        if (qtemanager.QTEFORCE == true)
         {
             if (distanceactRight || distanceactLeft)
             {

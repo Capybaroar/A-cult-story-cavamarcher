@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class QTEManager : MonoBehaviour
 {
     public GameObject QTElvl1;
@@ -12,11 +13,9 @@ public class QTEManager : MonoBehaviour
     private QTE[] possibleQTEs;
     private List<QTE> selectedQTEs;
     public bool QTEIng = false;
-    public PVManager PVManager;
 
-
+    public PVManager pvmanager;
     public Timer timer;
-
 
     public bool QTEFORCE = false;
     public bool QTEFORCECondition = false;
@@ -29,15 +28,14 @@ public class QTEManager : MonoBehaviour
 
     public bool PowerUsing = false;
 
-
-    //scotch
     private int currentQTE = -1;
+
+    // Référence à la coroutine d'échec pour pouvoir l'arrêter proprement (Bug #3)
+    private Coroutine _failCoroutine;
 
     void Start()
     {
-        //qteDisplay = GetComponentsInChildren<QTEDisplay>();
         selectedQTEs = new List<QTE>();
-
     }
 
     private void GenerateQTE()
@@ -51,11 +49,8 @@ public class QTEManager : MonoBehaviour
             qteDisplay[i].Reset();
             qteDisplay[i].DisplayQTE(selectedQTEs[i]);
         }
-
     }
 
-
-    //A changer
     void Update()
     {
         TouchManager();
@@ -63,23 +58,27 @@ public class QTEManager : MonoBehaviour
 
     private void TouchManager()
     {
-        if (PowerUsing != true)
+        if (PowerUsing != true && QTEIng != true)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                timer.ResetTimerQTETimerBar();
                 LaunchQTE();
                 QTEFORCECondition = true;
-
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
+                timer.ResetTimerQTETimerBar();
+
                 LaunchQTE();
                 QTEFIRECondition = true;
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                timer.ResetTimerQTETimerBar();
+
                 LaunchQTE();
                 QTEPSYCondition = true;
             }
@@ -89,24 +88,20 @@ public class QTEManager : MonoBehaviour
     private void LaunchQTE()
     {
         Time.timeScale = 0f;
+        QTEIng = true;
+
 
         QTElvl1.SetActive(true);
 
         StartCoroutine(Anim());
-        QTEIng = true;
-
-        //Afficher les display QTE 
-        //Lancer une animation
     }
 
     private IEnumerator Anim()
     {
         for (int i = 0; i < 15; i++)
         {
-            Debug.Log(i.ToString());
             foreach (var qted in qteDisplay)
             {
-                Debug.Log("JESUISLAAAAAAAAAA");
                 var disp = possibleQTEs[UnityEngine.Random.Range(0, possibleQTEs.Length)];
                 qted.DisplayQTE(disp);
             }
@@ -120,14 +115,16 @@ public class QTEManager : MonoBehaviour
 
     private IEnumerator FailQTETime()
     {
-        yield return new WaitForSeconds(1f);
-        StopCoroutine(FailQTETime());
+        yield return new WaitForSecondsRealtime(1f);
+        // La coroutine se termine naturellement, plus besoin de StopCoroutine ici (Bug #3)
     }
+
+
+
 
 
     public void OnQTE(InputValue v)
     {
-        print("hiiiii");
         if (currentQTE < 0)
         {
             return;
@@ -135,6 +132,7 @@ public class QTEManager : MonoBehaviour
 
         var currentSelected = selectedQTEs[currentQTE];
         var dir = v.Get<Vector2>().normalized;
+
         if (dir == currentSelected.value)
         {
             qteDisplay[currentQTE].ValidationFeedback();
@@ -142,27 +140,35 @@ public class QTEManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FailQTETime());
+            // Bug #3 — on arrête proprement l'ancienne coroutine avant d'en lancer une nouvelle
+            if (_failCoroutine != null) StopCoroutine(_failCoroutine);
+            _failCoroutine = StartCoroutine(FailQTETime());
 
             qteDisplay[currentQTE].FailFeedback();
             QTElvl1.SetActive(false);
-            PVManager.heart -= 1;
+            pvmanager.loosingheartcondition = true;
             QTEFORCECondition = false;
             QTEFIRECondition = false;
             QTEPSYCondition = false;
 
+            // Bug #4 — on remet le temps en marche après un échec
+            Time.timeScale = 1f;
+            QTEIng = false;
+
+            // Bug #5 — on réinitialise currentQTE pour éviter un accès invalide
+            currentQTE = -1;
 
 
-
-            //currentQTE =-1;
-            //echec
+            return;
         }
+
         if (currentQTE >= selectedQTEs.Count)
         {
             currentQTE = -1;
             QTElvl1.SetActive(false);
             Time.timeScale = 1f;
             QTEIng = false;
+
             if (QTEFORCECondition)
             {
                 QTEFORCE = true;
@@ -170,9 +176,7 @@ public class QTEManager : MonoBehaviour
 
                 PowerUsing = true;
 
-                timer.TimerSlider.maxValue = timer.GameTime;
-                timer.TimerSlider.value = timer.GameTime;
-                timer.Stoptimer = false;
+                timer.ResetTimerPowerTimerBar();
             }
 
             if (QTEFIRECondition)
@@ -181,6 +185,8 @@ public class QTEManager : MonoBehaviour
                 QTEFIRECondition = false;
 
                 PowerUsing = true;
+
+                timer.ResetTimerPowerTimerBar();
 
             }
 
@@ -191,9 +197,9 @@ public class QTEManager : MonoBehaviour
 
                 PowerUsing = true;
 
+                timer.ResetTimerPowerTimerBar();
+
             }
-            //victoire sequence
         }
     }
-
 }

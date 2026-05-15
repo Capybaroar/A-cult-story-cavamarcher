@@ -6,7 +6,7 @@ public class PVManager : MonoBehaviour
     public int heart = 3;
     public int maxHeart = 3; // valeur de référence pour réinitialiser les coeurs
     public int life = 3;
-    public bool touch = false;
+    public bool loosingheartcondition = false;
     public int sceneToLoad;
     public int sceneToRecharge;
 
@@ -36,16 +36,16 @@ public class PVManager : MonoBehaviour
     void Update()
     {
         Endcondition();
-        Touch();
+        LoosingOneHeart();
 
     }
 
-    public void Touch()
+    public void LoosingOneHeart()
     {
-        if (touch == true)
+        if (loosingheartcondition == true)
         {
             heart -= 1;
-            touch = false;
+            loosingheartcondition = false;
         }
     }
 

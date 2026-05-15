@@ -3,13 +3,15 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public Slider TimerSlider;
+    public Slider PowerTimerBar;
+    public Slider qteTimerBar;
     public float GameTime;
+    public float QTEGameTime;
     public QTEManager qtemanager;
 
-   
-    public bool Stoptimer;
 
+    public bool StopPowerTimer;
+    public bool StopQTETimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,25 +23,76 @@ public class Timer : MonoBehaviour
     {
         if (qtemanager.PowerUsing == true)
         {
-            QTETimer();
+            QTETimerPowerTimerBar();
+        }
+        PowerEND();
+
+        if (qtemanager.QTEIng == true)
+        {
+            Debug.Log("QTEIng est true, QTEGameTime = " + QTEGameTime);
+            QTETimerQTETimerBar();
         }
     }
 
-    public void QTETimer()
+    public void PowerEND()
     {
-
-        float time = GameTime - Time.deltaTime;
-
-        if (time <= 0)
+        if (GameTime <= 0)
         {
-            Stoptimer = true;
+            qtemanager.PowerUsing = false;
+            qtemanager.QTEFORCE = false;
+            qtemanager.QTEFIRE = false;
+            qtemanager.QTEPSY = false;
         }
 
-        if (Stoptimer == false)
-        {
-            TimerSlider.value = time;
+    }
 
+
+    public void QTETimerPowerTimerBar()
+    {
+        if (StopPowerTimer) return;
+
+        GameTime -= Time.deltaTime;
+        if (GameTime <= 0)
+        {
+            GameTime = 0;
+            StopPowerTimer = true;
         }
+        PowerTimerBar.value = GameTime;
+    }
+
+    public void ResetTimerPowerTimerBar()
+    {
+        //GameTime = 8;
+
+        GameTime = PowerTimerBar.maxValue;
+        StopPowerTimer = false;
+        PowerTimerBar.value = GameTime;
+    }
+
+
+
+
+
+    public void QTETimerQTETimerBar()
+    {
+        if (StopQTETimer) return;
+
+        QTEGameTime -= Time.unscaledDeltaTime;
+        if (QTEGameTime <= 0)
+        {
+            QTEGameTime = 0;
+            StopQTETimer = true;
+        }
+        qteTimerBar.value = QTEGameTime;
+    }
+
+    public void ResetTimerQTETimerBar()
+    {
+        //QTEGameTime = 3;
+
+        QTEGameTime = qteTimerBar.maxValue;
+        StopQTETimer = false;
+        qteTimerBar.value = QTEGameTime;
     }
 
 }

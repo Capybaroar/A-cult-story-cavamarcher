@@ -196,15 +196,15 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1052533468}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 3
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 8
   m_WholeNumbers: 0
-  m_Value: 8
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f3e534789a09ed4fa5dc8007859501f, type: 2}
   - {fileID: 11400000, guid: b9f1965c01e604f439b90af7feb63b0a, type: 2}
   QTEIng: 0
-  PVManager: {fileID: 1891497015}
+  pvmanager: {fileID: 1891497015}
   timer: {fileID: 1661897741}
   QTEFORCE: 0
   QTEFORCECondition: 0
@@ -1458,7 +1458,7 @@ RectTransform:
   m_Father: {fileID: 1487916958}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2176,10 +2176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f867d8fce73574ea01378f9cef70db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  TimerSlider: {fileID: 512612978}
+  PowerTimerBar: {fileID: 512612978}
+  qteTimerBar: {fileID: 45075833}
   GameTime: 8
+  QTEGameTime: 3
   qtemanager: {fileID: 849530959}
-  Stoptimer: 0
+  StopPowerTimer: 0
+  StopQTETimer: 0
 --- !u!1 &1778607605
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,7 +2556,7 @@ MonoBehaviour:
   heart: 3
   maxHeart: 3
   life: 3
-  touch: 0
+  loosingheartcondition: 0
   sceneToLoad: 1
   sceneToRecharge: 0
 --- !u!224 &1920660274 stripped

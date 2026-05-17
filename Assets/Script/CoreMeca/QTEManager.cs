@@ -16,6 +16,7 @@ public class QTEManager : MonoBehaviour
 
     public PVManager pvmanager;
     public Timer timer;
+    public SpeedIncrease speedincrease;
 
     public GameObject forceflouqte;
     public GameObject fireflouqte;
@@ -64,9 +65,9 @@ public class QTEManager : MonoBehaviour
 
     private void TouchManager()
     {
-        if (PowerUsing != true && QTEIng != true)
+        if (QTEIng != true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && QTEFORCE == false)
             {
                 forceflouqte.SetActive(true);
                 timer.ResetTimerQTETimerBar();
@@ -74,7 +75,7 @@ public class QTEManager : MonoBehaviour
                 QTEFORCECondition = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1) && QTEFIRE == false)
             {
                 fireflouqte.SetActive(true);
 
@@ -84,7 +85,7 @@ public class QTEManager : MonoBehaviour
                 QTEFIRECondition = true;
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && QTEPSY == false)
             {
                 psyflouqte.SetActive(true);
 
@@ -168,7 +169,7 @@ public class QTEManager : MonoBehaviour
 
                 PowerUsing = true;
 
-                timer.ResetTimerPowerTimerBar();
+                timer.ResetTimerForceTimerBar();
                 forceflouqte.SetActive(false);
 
             }
@@ -180,7 +181,7 @@ public class QTEManager : MonoBehaviour
 
                 PowerUsing = true;
 
-                timer.ResetTimerPowerTimerBar();
+                timer.ResetTimerFireTimerBar();
                 fireflouqte.SetActive(false);
 
 
@@ -190,11 +191,12 @@ public class QTEManager : MonoBehaviour
             if (QTEPSYCondition)
             {
                 QTEPSY = true;
+                speedincrease.SpeedBoost();
                 QTEPSYCondition = false;
 
                 PowerUsing = true;
 
-                timer.ResetTimerPowerTimerBar();
+                timer.ResetTimerPsyTimerBar();
                 psyflouqte.SetActive(false);
 
             }

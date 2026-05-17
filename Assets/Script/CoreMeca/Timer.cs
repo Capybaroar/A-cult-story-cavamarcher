@@ -3,14 +3,20 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public Slider PowerTimerBar;
+    public Slider ForceTimerBar;
+    public Slider psytimerbar;
+    public Slider firetimerbar;
     public Slider qteTimerBar;
-    public float GameTime;
+    public float forcegameTime;
+    public float firegameTime;
+    public float psygameTime;
     public float QTEGameTime;
     public QTEManager qtemanager;
+    public SpeedIncrease speedincrease;
 
-
-    public bool StopPowerTimer;
+    public bool StopForceTimer;
+    public bool StopFireTimer;
+    public bool StopPsyTimer;
     public bool StopQTETimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,11 +27,25 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (qtemanager.PowerUsing == true)
+        if (qtemanager.PowerUsing == true && qtemanager.QTEFORCE == true)
         {
-            QTETimerPowerTimerBar();
+            QTETimerForceTimerBar();
         }
-        PowerEND();
+
+        if (qtemanager.PowerUsing == true && qtemanager.QTEFIRE == true)
+        {
+            QTETimerFireTimerBar();
+        }
+
+        if (qtemanager.PowerUsing == true && qtemanager.QTEPSY == true)
+        {
+            QTETimerPsyTimerBar();
+        }
+        else
+        {
+            PowerEND();
+
+        }
 
         if (qtemanager.QTEIng == true)
         {
@@ -36,37 +56,93 @@ public class Timer : MonoBehaviour
 
     public void PowerEND()
     {
-        if (GameTime <= 0)
+        if (forcegameTime <= 0)
         {
             qtemanager.PowerUsing = false;
             qtemanager.QTEFORCE = false;
+        }
+
+        if (firegameTime <= 0)
+        {
+            qtemanager.PowerUsing = false;
             qtemanager.QTEFIRE = false;
+        }
+
+        if (psygameTime <= 0)
+        {
+            speedincrease.SpeedBack();
+            qtemanager.PowerUsing = false;
             qtemanager.QTEPSY = false;
         }
 
     }
 
 
-    public void QTETimerPowerTimerBar()
+    public void QTETimerForceTimerBar()
     {
-        if (StopPowerTimer) return;
+        if (StopForceTimer) return;
 
-        GameTime -= Time.deltaTime;
-        if (GameTime <= 0)
+        forcegameTime -= Time.deltaTime;
+        if (forcegameTime <= 0)
         {
-            GameTime = 0;
-            StopPowerTimer = true;
+            forcegameTime = 0;
+            StopForceTimer = true;
         }
-        PowerTimerBar.value = GameTime;
+        ForceTimerBar.value = forcegameTime;
     }
 
-    public void ResetTimerPowerTimerBar()
+    public void ResetTimerForceTimerBar()
     {
         //GameTime = 8;
 
-        GameTime = PowerTimerBar.maxValue;
-        StopPowerTimer = false;
-        PowerTimerBar.value = GameTime;
+        forcegameTime = ForceTimerBar.maxValue;
+        StopForceTimer = false;
+        ForceTimerBar.value = forcegameTime;
+    }
+
+    public void QTETimerFireTimerBar()
+    {
+        if (StopFireTimer) return;
+
+        firegameTime -= Time.deltaTime;
+        if (firegameTime <= 0)
+        {
+            firegameTime = 0;
+            StopFireTimer = true;
+        }
+        firetimerbar.value = firegameTime;
+    }
+
+    public void ResetTimerFireTimerBar()
+    {
+
+        firegameTime = firetimerbar.maxValue;
+        StopFireTimer = false;
+        firetimerbar.value = firegameTime;
+    }
+
+
+
+    public void QTETimerPsyTimerBar()
+    {
+        if (StopPsyTimer) return;
+
+        psygameTime -= Time.deltaTime;
+        if (psygameTime <= 0)
+        {
+            psygameTime = 0;
+            StopPsyTimer = true;
+        }
+        psytimerbar.value = psygameTime;
+    }
+
+    public void ResetTimerPsyTimerBar()
+    {
+        //QTEGameTime = 3;
+
+        psygameTime = psytimerbar.maxValue;
+        StopPsyTimer = false;
+        psytimerbar.value = psygameTime;
     }
 
 

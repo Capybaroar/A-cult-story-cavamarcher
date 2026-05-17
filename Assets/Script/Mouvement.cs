@@ -31,19 +31,29 @@ public class Mouvement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            rb.linearVelocity = new Vector3(-speed, 0, 0);
+            print("left");
+            rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            rb.linearVelocity = new Vector3(speed, 0, 0);
+            rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
 
+        }
+
+        else
+        {
+            // Amélioration — quand aucune touche n'est appuyée, le joueur s'arrête
+            // sans toucher à Y pour garder la gravité et le saut intacts
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && jump.jumpcondition == true)
         {
-            rb.AddForce(new Vector3(0, JumpForce, 0));
-
+            // Amélioration — on remet Y à 0 avant d'appliquer la force
+            // pour que le saut soit toujours de la même hauteur
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+            rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
         }
     }
 }

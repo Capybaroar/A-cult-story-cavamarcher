@@ -41,11 +41,7 @@ public class Timer : MonoBehaviour
         {
             QTETimerPsyTimerBar();
         }
-        else
-        {
-            PowerEND();
 
-        }
 
         if (qtemanager.QTEIng == true)
         {
@@ -58,23 +54,23 @@ public class Timer : MonoBehaviour
     {
         if (forcegameTime <= 0)
         {
-            qtemanager.PowerUsing = false;
             qtemanager.QTEFORCE = false;
         }
-
         if (firegameTime <= 0)
         {
-            qtemanager.PowerUsing = false;
             qtemanager.QTEFIRE = false;
         }
-
         if (psygameTime <= 0)
         {
             speedincrease.SpeedBack();
-            qtemanager.PowerUsing = false;
             qtemanager.QTEPSY = false;
         }
 
+        // PowerUsing passe à false seulement si tous les pouvoirs sont terminés
+        if (!qtemanager.QTEFORCE && !qtemanager.QTEFIRE && !qtemanager.QTEPSY)
+        {
+            qtemanager.PowerUsing = false;
+        }
     }
 
 
@@ -87,6 +83,7 @@ public class Timer : MonoBehaviour
         {
             forcegameTime = 0;
             StopForceTimer = true;
+            PowerEND();
         }
         ForceTimerBar.value = forcegameTime;
     }
@@ -109,6 +106,7 @@ public class Timer : MonoBehaviour
         {
             firegameTime = 0;
             StopFireTimer = true;
+            PowerEND();
         }
         firetimerbar.value = firegameTime;
     }
@@ -132,6 +130,7 @@ public class Timer : MonoBehaviour
         {
             psygameTime = 0;
             StopPsyTimer = true;
+            PowerEND();
         }
         psytimerbar.value = psygameTime;
     }
